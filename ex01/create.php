@@ -17,15 +17,15 @@ else
 
 	if (file_exists($path) === FALSE)
 		mkdir($path);
-	if (file_exists($file) === FALSE)
-		touch($file);
 
 	$user[login] = $_POST['login'];
 	$user[passwd] = hash('sha256', 'suolaa' . $_POST['passwd']);
 
-	$data = file_get_contents($file);
-	$arr = unserialize($data);
-
+	if (file_exists($file) === TRUE)
+	{
+		$data = file_get_contents($file);
+		$arr = unserialize($data);
+	}
 	if (empty($arr))
 		$arr = array($user);
 	else
