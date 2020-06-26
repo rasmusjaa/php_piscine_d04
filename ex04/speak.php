@@ -19,7 +19,8 @@ else
 
 		$fp = fopen($file, 'r+');
 
-//		if (flock($fp, LOCK_EX)) {
+		if (flock($fp, LOCK_EX))
+		{
 			$data = file_get_contents($file);
 			$arr = unserialize($data);
 			$arr[] = [
@@ -29,11 +30,12 @@ else
 			];
 			$data = serialize($arr);
 			file_put_contents($file, $data);
-//			flock($fp, LOCK_UN);
-//		else
-//		{
-//			echo "File is locked\n";
-//		}
+			flock($fp, LOCK_UN);
+		}
+		else
+		{
+			echo "File is locked\n";
+		}
 		fclose($fp);
 	}
 }
