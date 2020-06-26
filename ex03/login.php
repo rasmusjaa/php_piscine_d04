@@ -23,7 +23,7 @@ if (auth($_GET['login'], $_GET['passwd']) === TRUE)
 {
 	$_SESSION['loggued_on_user'] = $_GET['login'];
 	return_ok();
-}	
+}
 else
 {
 	$_SESSION['loggued_on_user'] = '';
