@@ -30,11 +30,10 @@ else
 			];
 			$data = serialize($arr);
 			file_put_contents($file, $data);
-			flock($fp, LOCK_UN);
 		}
 		else
 		{
-			echo "File is locked\n";
+			echo "Coudn't lock the file\n";
 		}
 		fclose($fp);
 	}
